@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario | StoreManager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar" id="sidebar">
+      <div class="marca">
+        <span class="marca-icono"><i class="icono" data-lucide="store"></i></span>
+        <span class="marca-nombre">StoreManager</span>
+      </div>
+
+      <nav class="nav" aria-label="Principal">
+        <a class="nav-item" href="index.html"><i class="icono" data-lucide="layout-dashboard"></i>Inicio</a>
+        <a class="nav-item activo" href="inventario.html" aria-current="page"><i class="icono" data-lucide="package"></i>Inventario</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="store"></i>Tienda</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="shopping-cart"></i>Carrito</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="receipt-text"></i>Ventas</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="settings"></i>Configuración</a>
+      </nav>
+
+      <div class="ayuda">
+        <strong>¿Necesitas ayuda?</strong>
+        <p>Consulta la guía rápida de StoreManager.</p>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú"><i class="icono" data-lucide="menu"></i></button>
+        <span class="seccion-actual">Inventario</span>
+        <div class="perfil">
+          <span class="avatar"></span>
+          <div class="perfil-info">
+            <span class="perfil-nombre">Laura Gómez</span>
+            <span class="perfil-rol">Administradora</span>
+          </div>
+          <i class="icono" data-lucide="chevron-down"></i>
+        </div>
+      </header>
+
+      <main class="contenido">
+        <div class="encabezado-fila">
+          <div>
+            <h1>Inventario</h1>
+            <p class="subtitulo">Gestiona los productos disponibles en tu tienda.</p>
+          </div>
+          <a class="btn btn-primario" href="agregarProducto.html"><i class="icono-sm" data-lucide="plus"></i>Agregar producto</a>
+        </div>
+
+        <div class="controles">
+          <label class="buscador">
+            <i class="icono" data-lucide="search"></i>
+            <input type="search" id="buscador" placeholder="Buscar productos..." aria-label="Buscar productos">
+          </label>
+          <div class="selector">
+            <select id="categoria" aria-label="Filtrar por categoría"></select>
+            <i class="icono-sm" data-lucide="chevron-down"></i>
+          </div>
+        </div>
+
+        <section class="tarjeta tabla" aria-label="Listado de productos">
+          <div class="tabla-scroll">
+            <div class="tabla-ancho">
+              <div class="fila fila-cabecera">
+                <span>Imagen</span><span>Producto</span><span>Categoría</span><span>Precio</span><span>Stock</span><span>Estado</span><span>Acciones</span>
+              </div>
+              <div id="filas"></div>
+            </div>
+          </div>
+          <div class="paginacion">
+            <span class="resumen" id="resumen"></span>
+            <div class="paginas" id="paginas"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="modal" id="modalEliminar" aria-labelledby="modalTitulo" aria-describedby="modalTexto">
+    <div class="modal-icono"><i class="icono" data-lucide="trash-2"></i></div>
+    <h2 id="modalTitulo">¿Eliminar producto?</h2>
+    <p id="modalTexto">¿Está seguro de que desea eliminar este producto? Esta acción no se puede deshacer.</p>
+    <div class="modal-acciones">
+      <button class="btn btn-secundario" type="button" id="cancelarEliminar">Cancelar</button>
+      <button class="btn btn-peligro" type="button" id="confirmarEliminar"><i class="icono-sm" data-lucide="trash-2"></i>Eliminar</button>
+    </div>
+  </dialog>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/inventario.js"></script>
+</body>
+</html>

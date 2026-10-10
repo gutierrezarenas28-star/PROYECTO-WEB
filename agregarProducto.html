@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agregar producto | StoreManager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body data-modo="agregar">
+  <div class="dashboard">
+    <aside class="sidebar" id="sidebar">
+      <div class="marca">
+        <span class="marca-icono"><i class="icono" data-lucide="store"></i></span>
+        <span class="marca-nombre">StoreManager</span>
+      </div>
+
+      <nav class="nav" aria-label="Principal">
+        <a class="nav-item" href="index.html"><i class="icono" data-lucide="layout-dashboard"></i>Inicio</a>
+        <a class="nav-item activo" href="inventario.html" aria-current="page"><i class="icono" data-lucide="package"></i>Inventario</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="store"></i>Tienda</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="shopping-cart"></i>Carrito</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="receipt-text"></i>Ventas</a>
+        <a class="nav-item" href="#"><i class="icono" data-lucide="settings"></i>Configuración</a>
+      </nav>
+
+      <div class="ayuda">
+        <strong>¿Necesitas ayuda?</strong>
+        <p>Consulta la guía rápida de StoreManager.</p>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú"><i class="icono" data-lucide="menu"></i></button>
+        <span class="seccion-actual">Inventario</span>
+        <div class="perfil">
+          <span class="avatar"></span>
+          <div class="perfil-info">
+            <span class="perfil-nombre">Laura Gómez</span>
+            <span class="perfil-rol">Administradora</span>
+          </div>
+          <i class="icono" data-lucide="chevron-down"></i>
+        </div>
+      </header>
+
+      <main class="contenido">
+        <div class="encabezado-fila">
+          <div>
+            <h1>Agregar producto</h1>
+            <p class="subtitulo" id="subtitulo">Completa la información para registrar un producto.</p>
+          </div>
+        </div>
+
+        <form class="tarjeta formulario" id="formulario" novalidate>
+          <div class="form-imagen">
+            <div class="vista-previa" id="vistaPrevia"><i class="icono" data-lucide="image"></i></div>
+            <div class="form-imagen-texto campo" data-campo="imagen">
+              <span class="form-imagen-titulo">Imagen del producto</span>
+              <span class="form-imagen-ayuda">PNG o JPG, máximo 5 MB.</span>
+              <button class="btn btn-secundario btn-pequeno" type="button" id="btnImagen">Seleccionar imagen</button>
+              <input type="file" id="archivo" accept="image/png,image/jpeg" hidden>
+              <p class="campo-error" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+            </div>
+          </div>
+
+          <div class="form-rejilla">
+            <div class="campo" data-campo="codigo">
+              <label for="codigo">Código *</label>
+              <input id="codigo" name="codigo" type="text" autocomplete="off">
+              <p class="campo-error" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+            </div>
+            <div class="campo" data-campo="nombre">
+              <label for="nombre">Nombre *</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Nombre del producto" autocomplete="off">
+              <p class="campo-error" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+            </div>
+            <div class="campo" data-campo="categoria">
+              <label for="categoria">Categoría *</label>
+              <div class="selector">
+                <select id="categoria" name="categoria" required></select>
+                <i class="icono-sm" data-lucide="chevron-down"></i>
+              </div>
+              <p class="campo-error" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+            </div>
+            <div class="campo" data-campo="precio">
+              <label for="precio">Precio *</label>
+              <input id="precio" name="precio" type="text" inputmode="numeric" placeholder="$0" autocomplete="off">
+              <p class="campo-error" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+            </div>
+            <div class="campo ancho" data-campo="cantidad">
+              <label for="cantidad">Cantidad disponible *</label>
+              <input id="cantidad" name="cantidad" type="number" step="1" placeholder="0">
+              <p class="campo-error" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+            </div>
+            <div class="campo ancho" data-campo="descripcion">
+              <label for="descripcion">Descripción</label>
+              <textarea id="descripcion" name="descripcion" placeholder="Describe brevemente el producto"></textarea>
+            </div>
+          </div>
+
+          <p class="error-general" id="errorGeneral" role="alert" hidden></p>
+
+          <div class="form-acciones">
+            <a class="btn btn-secundario" href="inventario.html">Cancelar</a>
+            <button class="btn btn-primario" type="submit"><i class="icono-sm" data-lucide="save"></i>Guardar producto</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/formulario.js"></script>
+</body>
+</html>
