@@ -63,6 +63,7 @@
 #filas .fila-dato:last-child { border-bottom: 0; }
 .miniatura { width: 42px; height: 42px; border-radius: 8px; background: var(--verde-suave) center / cover no-repeat; }
 .celda-producto { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.celda-nombre { font-weight: 600; }
 .celda-codigo { font-size: 12px; line-height: 15px; color: #93A09A; }
 .celda-suave { color: var(--texto-suave); }
 .etiqueta-estado { display: inline-block; padding: 5px 9px; border-radius: 999px; font-size: 12px; line-height: 15px; background: var(--verde-suave); color: var(--verde-oscuro); }
@@ -83,6 +84,7 @@
 
 @media (max-width: 800px) {
   .controles { flex-direction: column; }
+  .buscador { flex: none; width: 100%; }
   .selector { width: 100%; }
 }
 

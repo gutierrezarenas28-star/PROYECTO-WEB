@@ -1,3 +1,7 @@
+// Página de inventario: filtros, tabla y paginación.
+iniciarMenuMovil();
+iniciarConfirmar();
+
 const POR_PAGINA = 6;
 let productos = cargarProductos();
 let pagina = 1;
@@ -35,7 +39,7 @@ function filaHTML(p) {
       <span>${p.stock}</span>
       <span><span class="etiqueta-estado${bajo ? ' bajo' : ''}">${bajo ? 'Stock bajo' : 'Disponible'}</span></span>
       <div class="acciones">
-        <a class="accion editar" href="editarProducto.html?id=${p.id}" aria-label="Editar ${esc(p.nombre)}"><i class="icono-sm" data-lucide="pencil"></i></a>
+        <a class="accion editar" href="editar-producto.html?id=${p.id}" aria-label="Editar ${esc(p.nombre)}"><i class="icono-sm" data-lucide="pencil"></i></a>
         <button class="accion eliminar" type="button" data-id="${p.id}" aria-label="Eliminar ${esc(p.nombre)}"><i class="icono-sm" data-lucide="trash-2"></i></button>
       </div>
     </div>`;
@@ -66,7 +70,7 @@ function render() {
     ? `Mostrando ${inicio + 1}–${inicio + vista.length} de ${total} productos`
     : 'Sin resultados';
   renderPaginacion(totalPaginas);
-  lucide.createIcons();
+  crearIconos();
 }
 
 // ---------- Eventos ----------
@@ -80,29 +84,18 @@ $('paginas').addEventListener('click', e => {
   render();
 });
 
-// ---------- Eliminar con confirmación ----------
-const modal = $('modalEliminar');
-let idAEliminar = null;
-
+// Eliminar con confirmación
 $('filas').addEventListener('click', e => {
   const btn = e.target.closest('.eliminar');
   if (!btn) return;
-  idAEliminar = Number(btn.dataset.id);
-  modal.showModal();
-  $('cancelarEliminar').focus();
+  const id = Number(btn.dataset.id);
+  mostrarConfirmar(() => {
+    eliminarProducto(id);          // función del repositorio
+    productos = cargarProductos();
+    renderCategorias();
+    render();
+  });
 });
-
-$('cancelarEliminar').addEventListener('click', () => modal.close());
-
-$('confirmarEliminar').addEventListener('click', () => {
-  productos = productos.filter(p => p.id !== idAEliminar);
-  guardarProductos(productos);
-  modal.close();
-  renderCategorias();
-  render();
-});
-
-modal.addEventListener('close', () => { idAEliminar = null; });
 
 renderCategorias();
 render();
