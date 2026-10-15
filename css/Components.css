@@ -63,6 +63,7 @@
 #filas .fila-dato:last-child { border-bottom: 0; }
 .miniatura { width: 42px; height: 42px; border-radius: 8px; background: var(--verde-suave) center / cover no-repeat; }
 .celda-producto { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.celda-nombre { font-weight: 600; }
 .celda-codigo { font-size: 12px; line-height: 15px; color: #93A09A; }
 .celda-suave { color: var(--texto-suave); }
 .etiqueta-estado { display: inline-block; padding: 5px 9px; border-radius: 999px; font-size: 12px; line-height: 15px; background: var(--verde-suave); color: var(--verde-oscuro); }
@@ -83,6 +84,7 @@
 
 @media (max-width: 800px) {
   .controles { flex-direction: column; }
+  .buscador { flex: none; width: 100%; }
   .selector { width: 100%; }
 }
 
@@ -106,7 +108,7 @@
 .formulario { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
 .form-imagen { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--borde); }
 .vista-previa { width: 72px; height: 72px; flex: none; display: grid; place-items: center; border-radius: 8px; background: #EEF3F0 center / cover no-repeat; color: #93A09A; }
-.vista-previa.con-imagen > i, .vista-previa.con-imagen > svg { display: none; }
+.vista-previa.con-imagen > i, .vista-previa.con-imagen > svg, .vista-previa.con-imagen > span { display: none; }
 .form-imagen-texto { align-items: flex-start; gap: 3px; }
 .form-imagen-titulo { font-size: 13px; line-height: 16px; }
 .form-imagen-ayuda { font-size: 12px; line-height: 15px; color: var(--texto-suave); }
