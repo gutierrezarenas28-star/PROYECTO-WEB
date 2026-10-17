@@ -14,17 +14,17 @@ let imagen = '';     // ruta o data URL de la imagen
 function mostrarError(campo, mensaje) {
   const caja = form.querySelector(`[data-campo="${campo}"]`);
   if (!caja) return;
-  const p = caja.querySelector('.campo-error');
-  if (p) { p.hidden = !mensaje; p.querySelector('span').textContent = mensaje || ''; }
+  const producto = caja.querySelector('.campo-error');
+  if (producto) { producto.hidden = !mensaje; producto.querySelector('span').textContent = mensaje || ''; }
   caja.classList.toggle('con-error', Boolean(mensaje));
   const entrada = f[campo];
   if (entrada) { if (mensaje) entrada.setAttribute('aria-invalid', 'true'); else entrada.removeAttribute('aria-invalid'); }
 }
 
 function llenarCategorias(actual) {
-  const cats = [...new Set([...CATEGORIAS, ...cargarProductos().map(p => p.categoria), actual].filter(Boolean))];
+  const cats = [...new Set([...CATEGORIAS, ...cargarProductos().map(producto => producto.categoria), actual].filter(Boolean))];
   f.categoria.innerHTML = '<option value="">Seleccione una categoría</option>' +
-    cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    cats.map(categoria => `<option value="${escapar(categoria)}">${escapar(categoria)}</option>`).join('');
 }
 
 // ---------- Imagen ----------
@@ -32,7 +32,7 @@ conectarImagen({
   botonId: 'btnImagen',
   entradaId: 'archivo',
   vistaPreviaId: 'vistaPrevia',
-  onCambio: url => { imagen = url; },
+  onCambio: enlace => { imagen = enlace; },
   onError: mensaje => mostrarError('imagen', mensaje),
 });
 
@@ -50,8 +50,8 @@ function leerDatos() {
 }
 
 // Quita el error de un campo apenas la persona lo vuelve a editar
-form.addEventListener('input', e => { if (e.target.name) mostrarError(e.target.name, ''); $('errorGeneral').hidden = true; });
-form.addEventListener('change', e => { if (e.target.name) mostrarError(e.target.name, ''); });
+form.addEventListener('input', evento => { if (evento.target.name) mostrarError(evento.target.name, ''); $('errorGeneral').hidden = true; });
+form.addEventListener('change', evento => { if (evento.target.name) mostrarError(evento.target.name, ''); });
 
 f.precio.addEventListener('blur', () => {
   f.precio.value = f.precio.value.trim() === '' ? '' : moneda(soloNumero(f.precio.value));
@@ -62,7 +62,7 @@ function guardar(d) {
   const campos = {
     codigo: d.codigo,
     nombre: d.nombre, categoria: d.categoria, precio: d.precio,
-    stock: Number(d.cantidadTexto), descripcion: d.descripcion, img: imagen,
+    stock: Number(d.cantidadTexto), descripcion: d.descripcion, imagen: imagen,
   };
   // En esta entrega los datos no se guardan: el cambio
   // vive en la memoria de la página abierta.
@@ -74,13 +74,13 @@ function guardar(d) {
   location.href = 'inventario.html';
 }
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
+form.addEventListener('submit', evento => {
+  evento.preventDefault();
   const datos = leerDatos();
   const errores = validarProducto(datos, producto ? producto.id : null);
   // Marca en rojo los campos vacíos o inválidos
-  CAMPOS.forEach(c => mostrarError(c, errores[c]));
-  const primero = CAMPOS.find(c => errores[c]);
+  CAMPOS.forEach(categoria => mostrarError(categoria, errores[categoria]));
+  const primero = CAMPOS.find(categoria => errores[categoria]);
   if (primero) { f[primero].focus(); return; }
   guardar(datos);
 });
@@ -103,11 +103,10 @@ if (esEditar) {
     f.precio.value = moneda(producto.precio);
     f.cantidad.value = producto.stock;
     f.descripcion.value = producto.descripcion || '';
-    imagen = producto.img || '';
+    imagen = producto.imagen || '';
     pintarVistaPrevia($('vistaPrevia'), imagen);
   }
 } else {
   llenarCategorias();
   f.codigo.placeholder = 'Ej. ' + codigoSugerido();
 }
-crearIconos();

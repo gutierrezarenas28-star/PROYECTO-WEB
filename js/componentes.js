@@ -7,8 +7,8 @@ function iniciarMenuMovil() {
   const boton = $('menuBtn');
   if (!sidebar || !boton) return; // no está en esta página
   boton.addEventListener('click', () => sidebar.classList.toggle('abierto'));
-  document.addEventListener('click', e => {
-    if (!sidebar.contains(e.target) && !boton.contains(e.target)) sidebar.classList.remove('abierto');
+  document.addEventListener('click', evento => {
+    if (!sidebar.contains(evento.target) && !boton.contains(evento.target)) sidebar.classList.remove('abierto');
   });
 }
 
@@ -34,36 +34,36 @@ function leerArchivo(archivo) {
 }
 
 // Reduce la imagen para que quepa en el almacenamiento del navegador.
-function reducirImagen(url) {
+function reducirImagen(enlace) {
   return new Promise((resolver, rechazar) => {
-    const img = new Image();
-    img.onload = () => {
-      const escala = Math.min(1, LADO_MAXIMO / Math.max(img.width, img.height));
+    const imagen = new Image();
+    imagen.onload = () => {
+      const escala = Math.min(1, LADO_MAXIMO / Math.max(imagen.width, imagen.height));
       const lienzo = document.createElement('canvas');
-      lienzo.width = Math.round(img.width * escala);
-      lienzo.height = Math.round(img.height * escala);
-      const ctx = lienzo.getContext('2d');
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(0, 0, lienzo.width, lienzo.height);
-      ctx.drawImage(img, 0, 0, lienzo.width, lienzo.height);
+      lienzo.width = Math.round(imagen.width * escala);
+      lienzo.height = Math.round(imagen.height * escala);
+      const contexto = lienzo.getContext('2d');
+      contexto.fillStyle = '#fff';
+      contexto.fillRect(0, 0, lienzo.width, lienzo.height);
+      contexto.drawImage(imagen, 0, 0, lienzo.width, lienzo.height);
       resolver(lienzo.toDataURL('image/jpeg', 0.85));
     };
-    img.onerror = rechazar;
-    img.src = url;
+    imagen.onerror = rechazar;
+    imagen.src = enlace;
   });
 }
 
 // Muestra la imagen en la caja de vista previa (si no carga, queda el ícono).
-function pintarVistaPrevia(caja, url) {
+function pintarVistaPrevia(caja, enlace) {
   caja.classList.remove('con-imagen');
   caja.style.backgroundImage = '';
-  if (!url) return;
+  if (!enlace) return;
   const prueba = new Image();
   prueba.onload = () => {
-    caja.style.backgroundImage = `url("${url}")`;
+    caja.style.backgroundImage = `url("${enlace}")`;
     caja.classList.add('con-imagen');
   };
-  prueba.src = url;
+  prueba.src = enlace;
 }
 
 // Conecta el botón "Seleccionar imagen" con el input oculto y la vista previa.
@@ -76,16 +76,16 @@ function conectarImagen({ botonId, entradaId, vistaPreviaId, onCambio, onError }
 
   boton.addEventListener('click', () => entrada.click());
 
-  entrada.addEventListener('change', e => {
-    const archivo = e.target.files[0];
-    e.target.value = '';
+  entrada.addEventListener('change', evento => {
+    const archivo = evento.target.files[0];
+    evento.target.value = '';
     if (!archivo) return;
     onError('');
     const error = validarArchivo(archivo);
     if (error) return onError(error);
     leerArchivo(archivo)
       .then(reducirImagen)
-      .then(url => { pintarVistaPrevia(caja, url); onCambio(url); })
+      .then(enlace => { pintarVistaPrevia(caja, enlace); onCambio(enlace); })
       .catch(() => onError('No se pudo leer la imagen.'));
   });
 }

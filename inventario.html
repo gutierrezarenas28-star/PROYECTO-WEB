@@ -16,17 +16,17 @@
   <div class="dashboard">
     <aside class="sidebar" id="sidebar">
       <div class="marca">
-        <span class="marca-icono"><i class="icono" data-lucide="store"></i></span>
+        <span class="marca-icono">🏪</span>
         <span class="marca-nombre">StoreManager</span>
       </div>
 
       <nav class="nav" aria-label="Principal">
-        <a class="nav-item" href="index.html"><i class="icono" data-lucide="layout-dashboard"></i>Inicio</a>
-        <a class="nav-item activo" href="inventario.html" aria-current="page"><i class="icono" data-lucide="package"></i>Inventario</a>
-        <a class="nav-item" href="#"><i class="icono" data-lucide="store"></i>Tienda</a>
-        <a class="nav-item" href="#"><i class="icono" data-lucide="shopping-cart"></i>Carrito</a>
-        <a class="nav-item" href="#"><i class="icono" data-lucide="receipt-text"></i>Ventas</a>
-        <a class="nav-item" href="#"><i class="icono" data-lucide="settings"></i>Configuración</a>
+        <a class="nav-item" href="index.html">📊 Inicio</a>
+        <a class="nav-item activo" href="inventario.html" aria-current="page">📦 Inventario</a>
+        <a class="nav-item" href="#">🏪 Tienda</a>
+        <a class="nav-item" href="#">🛒 Carrito</a>
+        <a class="nav-item" href="#">🧾 Ventas</a>
+        <a class="nav-item" href="#">⚙️ Configuración</a>
       </nav>
 
       <div class="ayuda">
@@ -37,7 +37,7 @@
 
     <div class="workspace">
       <header class="topbar">
-        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú"><i class="icono" data-lucide="menu"></i></button>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
         <span class="seccion-actual">Inventario</span>
         <div class="perfil">
           <span class="avatar"></span>
@@ -45,8 +45,7 @@
             <span class="perfil-nombre">Laura Gómez</span>
             <span class="perfil-rol">Administradora</span>
           </div>
-          <i class="icono" data-lucide="chevron-down"></i>
-        </div>
+          </div>
       </header>
 
       <main class="contenido">
@@ -55,18 +54,16 @@
             <h1>Inventario</h1>
             <p class="subtitulo">Gestiona los productos disponibles en tu tienda.</p>
           </div>
-          <a class="btn btn-primario" href="agregar-producto.html"><i class="icono-sm" data-lucide="plus"></i>Agregar producto</a>
+          <a class="btn btn-primario" href="agregar-producto.html">➕ Agregar producto</a>
         </div>
 
         <div class="controles">
           <label class="buscador">
-            <i class="icono" data-lucide="search"></i>
-            <input type="search" id="buscador" placeholder="Buscar productos..." aria-label="Buscar productos">
+            🔍 <input type="search" id="buscador" placeholder="Buscar productos..." aria-label="Buscar productos">
           </label>
           <div class="selector">
             <select id="categoria" aria-label="Filtrar por categoría"></select>
-            <i class="icono-sm" data-lucide="chevron-down"></i>
-          </div>
+            </div>
         </div>
 
         <section class="tarjeta tabla" aria-label="Listado de productos">
@@ -88,16 +85,15 @@
   </div>
 
   <dialog class="modal" id="modalEliminar" aria-labelledby="modalTitulo" aria-describedby="modalTexto">
-    <div class="modal-icono"><i class="icono" data-lucide="trash-2"></i></div>
+    <div class="modal-icono">🗑️</div>
     <h2 id="modalTitulo">¿Eliminar producto?</h2>
     <p id="modalTexto">¿Está seguro de que desea eliminar este producto? Esta acción no se puede deshacer.</p>
     <div class="modal-acciones">
       <button class="btn btn-secundario" type="button" id="cancelarEliminar">Cancelar</button>
-      <button class="btn btn-peligro" type="button" id="confirmarEliminar"><i class="icono-sm" data-lucide="trash-2"></i>Eliminar</button>
+      <button class="btn btn-peligro" type="button" id="confirmarEliminar">🗑️ Eliminar</button>
     </div>
   </dialog>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/utilidades.js"></script>
   <script src="js/datos.js"></script>
   <script src="js/repositorio.js"></script>

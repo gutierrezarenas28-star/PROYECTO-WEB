@@ -4,12 +4,12 @@
 const $ = id => document.getElementById(id);
 
 // Formatea un número como moneda colombiana: 4500 -> "$4.500".
-const moneda = n => '$' + Number(n).toLocaleString('es-CO');
+const moneda = numero => '$' + Number(numero).toLocaleString('es-CO');
 
 // Escapa texto para insertarlo de forma segura en HTML.
-const esc = s => String(s).replace(/[&<>"']/g, c => ({
+const escapar = s => String(s).replace(/[&<>"']/g, categoria => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-}[c]));
+}[categoria]));
 
 // Deja sólo los dígitos (para el precio tipeado).
 const soloNumero = texto => Number(String(texto).replace(/\D/g, ''));
@@ -23,6 +23,3 @@ const saludoSegunHora = h => {
   if (h < 19) return 'Buenas tardes';
   return 'Buenas noches';
 };
-
-// Convierte los <i data-lucide="..."> en íconos (si la librería cargó).
-const crearIconos = () => { if (window.lucide) lucide.createIcons(); };

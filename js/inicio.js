@@ -1,7 +1,7 @@
 // Página de inicio: saludo, indicadores y listas resumen.
 iniciarMenuMovil();
 
-const usuario = { nombre: 'Laura' };
+const usuario = { nombre: 'Laura🥺​' };
 
 // Indicadores decorativos del tablero (datos de ejemplo).
 const indicadores = [
@@ -32,28 +32,29 @@ function renderEncabezado() {
 }
 
 function renderIndicadores() {
-  $('indicadores').innerHTML = indicadores.map(i => `
-    <article class="tarjeta indicador${i.alerta ? ' alerta' : ''}">
+  const emojiIndicador = { 'package':'📦', 'triangle-alert':'⚠️', 'wallet-cards':'💳', 'badge-dollar-sign':'💵' };
+  $('indicadores').innerHTML = indicadores.map(indicador => `
+    <article class="tarjeta indicador${indicador.alerta ? ' alerta' : ''}">
       <div class="indicador-cabecera">
-        <span>${i.etiqueta}</span>
-        <span class="indicador-icono"><i class="icono" data-lucide="${i.icono}"></i></span>
+        <span>${indicador.etiqueta}</span>
+        <span class="indicador-icono">${emojiIndicador[indicador.icono] || ''}</span>
       </div>
-      <div class="indicador-valor">${i.valor}</div>
-      <div class="indicador-nota">${i.nota}</div>
+      <div class="indicador-valor">${indicador.valor}</div>
+      <div class="indicador-nota">${indicador.nota}</div>
     </article>`).join('');
 }
 
-function filaProducto(p) {
-  const bajo = p.stock <= UMBRAL_STOCK_BAJO;
+function filaProducto(producto) {
+  const bajo = producto.stock <= UMBRAL_STOCK_BAJO;
   return `
     <div class="producto">
-      <div class="producto-img" style="background-image:url('${esc(p.img)}')" role="img" aria-label="${esc(p.nombre)}"></div>
+      <div class="producto-imagen" style="background-image:url('${escapar(producto.imagen)}')" role="img" aria-label="${escapar(producto.nombre)}"></div>
       <div class="producto-info">
-        <span class="producto-nombre">${esc(p.nombre)}</span>
-        <span class="producto-categoria">${esc(p.categoria)}</span>
+        <span class="producto-nombre">${escapar(producto.nombre)}</span>
+        <span class="producto-categoria">${escapar(producto.categoria)}</span>
       </div>
-      <span class="producto-precio">${moneda(p.precio)}</span>
-      <span class="etiqueta-stock${bajo ? ' bajo' : ''}">${p.stock} uds.</span>
+      <span class="producto-precio">${moneda(producto.precio)}</span>
+      <span class="etiqueta-stock${bajo ? ' bajo' : ''}">${producto.stock} uds.</span>
     </div>`;
 }
 
@@ -61,12 +62,11 @@ const lista = cargarProductos();
 
 // "Stock bajo" se calcula con la regla del dominio (UMBRAL_STOCK_BAJO),
 // no con ids fijos: si los datos cambian, la vista sigue siendo correcta.
-const porId = id => lista.find(p => p.id === id);
+const porId = id => lista.find(producto => producto.id === id);
 const recientes = IDS_RECENTES.map(porId).filter(Boolean);
-const stockBajo = lista.filter(p => p.stock <= UMBRAL_STOCK_BAJO);
+const stockBajo = lista.filter(producto => producto.stock <= UMBRAL_STOCK_BAJO);
 
 renderEncabezado();
 renderIndicadores();
 $('recientes').innerHTML = recientes.map(filaProducto).join('');
 $('stockBajo').innerHTML = stockBajo.map(filaProducto).join('');
-crearIconos();

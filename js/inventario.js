@@ -9,49 +9,49 @@ const filtro = { texto: '', categoria: '' };
 
 // ---------- Filtros ----------
 function filtrados() {
-  const t = filtro.texto.trim().toLowerCase();
-  return productos.filter(p =>
-    (!filtro.categoria || p.categoria === filtro.categoria) &&
-    (!t || p.nombre.toLowerCase().includes(t) || p.codigo.toLowerCase().includes(t))
+  const texto = filtro.texto.trim().toLowerCase();
+  return productos.filter(producto =>
+    (!filtro.categoria || producto.categoria === filtro.categoria) &&
+    (!texto || producto.nombre.toLowerCase().includes(texto) || producto.codigo.toLowerCase().includes(texto))
   );
 }
 
 function renderCategorias() {
-  const cats = [...new Set(productos.map(p => p.categoria))].sort((a, b) => a.localeCompare(b, 'es'));
+  const cats = [...new Set(productos.map(producto => producto.categoria))].sort((a, b) => a.localeCompare(b, 'es'));
   if (!cats.includes(filtro.categoria)) filtro.categoria = '';
   $('categoria').innerHTML = '<option value="">Todas las categorías</option>' +
-    cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    cats.map(categoria => `<option value="${escapar(categoria)}">${escapar(categoria)}</option>`).join('');
   $('categoria').value = filtro.categoria;
 }
 
 // ---------- Tabla ----------
-function filaHTML(p) {
-  const bajo = p.stock <= UMBRAL_STOCK_BAJO;
+function filaHTML(producto) {
+  const bajo = producto.stock <= UMBRAL_STOCK_BAJO;
   return `
     <div class="fila fila-dato">
-      <div class="miniatura" style="background-image:url('${esc(p.img)}')" role="img" aria-label="${esc(p.nombre)}"></div>
+      <div class="miniatura" style="background-image:url('${escapar(producto.imagen)}')" role="img" aria-label="${escapar(producto.nombre)}"></div>
       <div class="celda-producto">
-        <span class="celda-nombre">${esc(p.nombre)}</span>
-        <span class="celda-codigo">${esc(p.codigo)}</span>
+        <span class="celda-nombre">${escapar(producto.nombre)}</span>
+        <span class="celda-codigo">${escapar(producto.codigo)}</span>
       </div>
-      <span class="celda-suave">${esc(p.categoria)}</span>
-      <span>${moneda(p.precio)}</span>
-      <span>${p.stock}</span>
+      <span class="celda-suave">${escapar(producto.categoria)}</span>
+      <span>${moneda(producto.precio)}</span>
+      <span>${producto.stock}</span>
       <span><span class="etiqueta-estado${bajo ? ' bajo' : ''}">${bajo ? 'Stock bajo' : 'Disponible'}</span></span>
       <div class="acciones">
-        <a class="accion editar" href="editar-producto.html?id=${p.id}" aria-label="Editar ${esc(p.nombre)}"><i class="icono-sm" data-lucide="pencil"></i></a>
-        <button class="accion eliminar" type="button" data-id="${p.id}" aria-label="Eliminar ${esc(p.nombre)}"><i class="icono-sm" data-lucide="trash-2"></i></button>
+        <a class="accion editar" href="editar-producto.html?id=${producto.id}" aria-label="Editar ${escapar(producto.nombre)}">✏️</a>
+        <button class="accion eliminar" type="button" data-id="${producto.id}" aria-label="Eliminar ${escapar(producto.nombre)}">🗑️</button>
       </div>
     </div>`;
 }
 
 function renderPaginacion(totalPaginas) {
-  let html = `<button class="btn-pag" type="button" data-pagina="${pagina - 1}" ${pagina === 1 ? 'disabled' : ''}>Anterior</button>`;
-  for (let i = 1; i <= totalPaginas; i++) {
-    html += `<button class="btn-pag${i === pagina ? ' activo' : ''}" type="button" data-pagina="${i}">${i}</button>`;
+  let marcado = `<button class="btn-pag" type="button" data-pagina="${pagina - 1}" ${pagina === 1 ? 'disabled' : ''}>Anterior</button>`;
+  for (let indicador = 1; indicador <= totalPaginas; indicador++) {
+    marcado += `<button class="btn-pag${indicador === pagina ? ' activo' : ''}" type="button" data-pagina="${indicador}">${indicador}</button>`;
   }
-  html += `<button class="btn-pag" type="button" data-pagina="${pagina + 1}" ${pagina === totalPaginas ? 'disabled' : ''}>Siguiente</button>`;
-  $('paginas').innerHTML = html;
+  marcado += `<button class="btn-pag" type="button" data-pagina="${pagina + 1}" ${pagina === totalPaginas ? 'disabled' : ''}>Siguiente</button>`;
+  $('paginas').innerHTML = marcado;
 }
 
 function render() {
@@ -70,25 +70,24 @@ function render() {
     ? `Mostrando ${inicio + 1}–${inicio + vista.length} de ${total} productos`
     : 'Sin resultados';
   renderPaginacion(totalPaginas);
-  crearIconos();
 }
 
 // ---------- Eventos ----------
-$('buscador').addEventListener('input', e => { filtro.texto = e.target.value; pagina = 1; render(); });
-$('categoria').addEventListener('change', e => { filtro.categoria = e.target.value; pagina = 1; render(); });
+$('buscador').addEventListener('input', evento => { filtro.texto = evento.target.value; pagina = 1; render(); });
+$('categoria').addEventListener('change', evento => { filtro.categoria = evento.target.value; pagina = 1; render(); });
 
-$('paginas').addEventListener('click', e => {
-  const btn = e.target.closest('[data-pagina]');
-  if (!btn || btn.disabled) return;
-  pagina = Number(btn.dataset.pagina);
+$('paginas').addEventListener('click', evento => {
+  const boton = evento.target.closest('[data-pagina]');
+  if (!boton || boton.disabled) return;
+  pagina = Number(boton.dataset.pagina);
   render();
 });
 
 // Eliminar con confirmación
-$('filas').addEventListener('click', e => {
-  const btn = e.target.closest('.eliminar');
-  if (!btn) return;
-  const id = Number(btn.dataset.id);
+$('filas').addEventListener('click', evento => {
+  const boton = evento.target.closest('.eliminar');
+  if (!boton) return;
+  const id = Number(boton.dataset.id);
   mostrarConfirmar(() => {
     eliminarProducto(id);          // función del repositorio
     productos = cargarProductos();
