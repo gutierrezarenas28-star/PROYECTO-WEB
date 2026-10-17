@@ -1,7 +1,7 @@
 // Configuración y datos iniciales (sólo constantes).
-// Carpeta img/ calculada desde la ubicación de este archivo (js/modelo/datos.js),
+// Carpeta img/ calculada desde la ubicación de este archivo (modelo/datos.js),
 // así funciona sin importar desde qué página se cargue.
-export const RUTA_IMG = new URL('../../img/', import.meta.url).href;
+export const RUTA_IMG = new URL('../img/', import.meta.url).href;
 
 export const UMBRAL_STOCK_BAJO = 10; // stock igual o menor a este número = "Stock bajo"
 export const CATEGORIAS = ['Granos', 'Lácteos', 'Despensa', 'Bebidas'];

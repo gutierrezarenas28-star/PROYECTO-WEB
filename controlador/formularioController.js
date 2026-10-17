@@ -1,11 +1,11 @@
 // Controlador del formulario: agregar o editar un producto
 // (el <body> trae data-modo="editar" cuando se edita).
-import { $, primeraMayuscula } from '../comun/utilidades.js';
+import { $, primeraMayuscula } from '../js/comun/utilidades.js';
 import { CATEGORIAS } from '../modelo/datos.js';
 import { cargarProductos, buscarProducto, codigoSugerido, agregarProducto, actualizarProducto } from '../modelo/repositorio.js';
 import { validarProducto } from '../modelo/validaciones.js';
-import { iniciarMenuMovil, conectarImagen } from '../vista/componentes.js';
-import { mostrarError, llenarCategorias, leerDatos, formatearPrecio, pintarProducto, ocultarErrorGeneral } from '../vista/formulario.vista.js';
+import { iniciarMenuMovil, conectarImagen } from '../js/modulos/componentes.js';
+import { mostrarError, llenarCategorias, leerDatos, formatearPrecio, pintarProducto, ocultarErrorGeneral } from '../js/modulos/formulario-ui.js';
 
 iniciarMenuMovil();
 

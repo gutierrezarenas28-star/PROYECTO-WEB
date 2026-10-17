@@ -1,9 +1,9 @@
 // Controlador del inventario: escucha los eventos de la página y
 // coordina al modelo (datos) con la vista (pintado).
-import { $ } from '../comun/utilidades.js';
+import { $ } from '../js/comun/utilidades.js';
 import { cargarProductos, eliminarProducto } from '../modelo/repositorio.js';
-import { iniciarMenuMovil, iniciarConfirmar, mostrarConfirmar } from '../vista/componentes.js';
-import * as vista from '../vista/inventario.vista.js';
+import { iniciarMenuMovil, iniciarConfirmar, mostrarConfirmar } from '../js/modulos/componentes.js';
+import * as vista from '../js/modulos/inventario-ui.js';
 
 iniciarMenuMovil();
 iniciarConfirmar();

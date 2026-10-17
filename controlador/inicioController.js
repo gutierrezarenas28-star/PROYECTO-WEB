@@ -1,7 +1,7 @@
 // Controlador del inicio: prepara los datos y se los entrega a la vista.
 import { buscarProducto, productosConStockBajo } from '../modelo/repositorio.js';
-import { iniciarMenuMovil } from '../vista/componentes.js';
-import { renderEncabezado, renderIndicadores, renderRecientes, renderStockBajo } from '../vista/inicio.vista.js';
+import { iniciarMenuMovil } from '../js/modulos/componentes.js';
+import { renderEncabezado, renderIndicadores, renderRecientes, renderStockBajo } from '../js/modulos/inicio-ui.js';
 
 iniciarMenuMovil();
 

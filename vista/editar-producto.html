@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agregar producto | StoreManager</title>
+  <title>Editar producto | StoreManager</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
 </head>
-<body data-modo="agregar">
+<body data-modo="editar">
   <div class="dashboard">
     <aside class="sidebar" id="sidebar">
       <div class="marca">
@@ -51,8 +51,8 @@
       <main class="contenido">
         <div class="encabezado-fila">
           <div>
-            <h1>Agregar producto</h1>
-            <p class="subtitulo" id="subtitulo">Completa la información para registrar un producto.</p>
+            <h1>Editar producto</h1>
+            <p class="subtitulo" id="subtitulo">Actualiza la información del producto.</p>
           </div>
         </div>
 
@@ -62,7 +62,7 @@
             <div class="form-imagen-texto campo" data-campo="imagen">
               <span class="form-imagen-titulo">Imagen del producto</span>
               <span class="form-imagen-ayuda">PNG o JPG, máximo 5 MB.</span>
-              <button class="btn btn-secundario btn-pequeno" type="button" id="btnImagen">Seleccionar imagen</button>
+              <button class="btn btn-secundario btn-pequeno" type="button" id="btnImagen">Cambiar imagen</button>
               <input type="file" id="archivo" accept="image/png,image/jpeg" hidden>
               <p class="campo-error" hidden>⚠️ <span></span></p>
             </div>
@@ -105,13 +105,13 @@
 
           <div class="form-acciones">
             <a class="btn btn-secundario" href="inventario.html">Cancelar</a>
-            <button class="btn btn-primario" type="submit">💾 Guardar producto</button>
+            <button class="btn btn-primario" type="submit">💾 Guardar cambios</button>
           </div>
         </form>
       </main>
     </div>
   </div>
 
-  <script type="module" src="js/controlador/formulario.js"></script>
+  <script type="module" src="../controlador/formularioController.js"></script>
 </body>
 </html>

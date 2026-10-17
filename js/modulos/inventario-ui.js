@@ -1,6 +1,6 @@
 // Vista del inventario: pinta categorías, tabla, resumen y paginación.
 import { $, escapar, moneda } from '../comun/utilidades.js';
-import { esStockBajo } from '../modelo/repositorio.js';
+import { esStockBajo } from '../../modelo/repositorio.js';
 
 // ---------- Tabla ----------
 function filaHTML(producto) {

@@ -1,6 +1,6 @@
 // Vista del inicio: pinta el encabezado, los indicadores y las listas resumen.
 import { $, escapar, moneda, primeraMayuscula, saludoSegunHora } from '../comun/utilidades.js';
-import { esStockBajo } from '../modelo/repositorio.js';
+import { esStockBajo } from '../../modelo/repositorio.js';
 
 function fechaCorta(ahora) {
   return ahora.toLocaleDateString('es-CO', { day: 'numeric', month: 'long' });

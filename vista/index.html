@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio | StoreManager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+  <div class="dashboard">
+    <aside class="sidebar" id="sidebar">
+      <div class="marca">
+        <span class="marca-icono">🏪</span>
+        <span class="marca-nombre">StoreManager</span>
+      </div>
+
+      <nav class="nav" aria-label="Principal">
+        <a class="nav-item activo" href="index.html" aria-current="page">📊 Inicio</a>
+        <a class="nav-item" href="inventario.html">📦 Inventario</a>
+        <a class="nav-item" href="#">🏪 Tienda</a>
+        <a class="nav-item" href="#">🛒 Carrito</a>
+        <a class="nav-item" href="#">🧾 Ventas</a>
+        <a class="nav-item" href="#">⚙️ Configuración</a>
+      </nav>
+
+      <div class="ayuda">
+        <strong>¿Necesitas ayuda?</strong>
+        <p>Consulta la guía rápida de StoreManager.</p>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+        <span class="seccion-actual">Inicio</span>
+        <div class="perfil">
+          <span class="avatar"></span>
+          <div class="perfil-info">
+            <span class="perfil-nombre">Laura Gómez</span>
+            <span class="perfil-rol">Administradora</span>
+          </div>
+          </div>
+      </header>
+
+      <main class="contenido">
+        <div class="encabezado">
+          <div>
+            <h1 id="saludo">¡Buenos días, Laura!</h1>
+            <p class="subtitulo" id="subtitulo">Aquí tienes el resumen de tu tienda para hoy.</p>
+          </div>
+          <div class="tarjeta fecha">
+            <div class="fecha-texto">
+              <span class="fecha-etiqueta">Fecha actual</span>
+              <span class="fecha-valor" id="fecha"></span>
+            </div>
+            <span class="estado-general">Todo en orden</span>
+          </div>
+        </div>
+
+        <section class="indicadores" id="indicadores" aria-label="Indicadores"></section>
+
+        <section class="detalles">
+          <div class="tarjeta panel">
+            <div class="panel-cabecera">
+              <h2 class="panel-titulo">Productos recientes</h2>
+              <a class="panel-accion" href="inventario.html">Ver inventario</a>
+            </div>
+            <div id="recientes"></div>
+          </div>
+          <div class="tarjeta panel">
+            <div class="panel-cabecera">
+              <h2 class="panel-titulo">Productos con stock bajo</h2>
+              <a class="panel-accion" href="inventario.html">Ver inventario</a>
+            </div>
+            <div id="stockBajo"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="../controlador/inicioController.js"></script>
+</body>
+</html>
