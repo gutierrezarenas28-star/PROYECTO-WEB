@@ -42,17 +42,15 @@
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 8px; border: 1px solid transparent; font-size: 14px; }
 .btn-primario { background: var(--verde); border-color: var(--verde); color: #fff; }
 .btn-primario:hover { background: var(--verde-oscuro); }
-.icono-sm { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icono-sm { font-size: 14px; line-height: 1; flex: none; }
 
 .controles { display: flex; gap: 12px; }
 .buscador { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; height: 42px; padding: 0 13px; background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; color: #93A09A; }
-.buscador .icono { width: 17px; height: 17px; }
 .buscador input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: inherit; color: var(--texto); }
 .buscador input::placeholder { color: #93A09A; }
 .buscador:focus-within { border-color: var(--verde); }
 .selector { position: relative; width: 190px; flex: none; }
 .selector select { width: 100%; height: 42px; padding: 0 36px 0 13px; appearance: none; background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; font: inherit; color: var(--texto); cursor: pointer; }
-.selector .icono-sm { position: absolute; right: 13px; top: 13px; color: var(--texto-suave); pointer-events: none; }
 
 .tabla { overflow: hidden; }
 .tabla-scroll { overflow-x: auto; }
@@ -123,15 +121,13 @@
 .campo input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 .campo input::-webkit-outer-spin-button, .campo input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .campo input:focus, .campo textarea:focus, .campo select:focus { outline: 0; border-color: var(--verde); box-shadow: 0 0 0 3px rgba(22, 122, 91, .12); }
-.campo .selector { width: 100%; }
-.selector select:required:invalid { color: #93A09A; }
 .selector option { color: var(--texto); }
 
 .campo.con-error input, .campo.con-error select, .campo.con-error textarea { border-color: #C83E4D; }
 .campo.con-error input:focus, .campo.con-error select:focus { box-shadow: 0 0 0 3px rgba(200, 62, 77, .12); }
 .campo-error { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; line-height: 15px; color: #C83E4D; }
 .campo-error[hidden] { display: none; }
-.campo-error .icono-sm { width: 13px; height: 13px; }
+.campo-error .icono-sm { font-size: 12px; }
 .error-general { margin: 0; font-size: 13px; color: #C83E4D; }
 .error-general[hidden] { display: none; }
 .form-acciones { display: flex; justify-content: flex-end; gap: 10px; }

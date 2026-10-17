@@ -1,8 +1,9 @@
-// Piezas de interfaz reutilizables: menú móvil, imagen del producto,
-// diálogo de confirmación y validación del formulario.
+// Piezas de interfaz reutilizables: menú móvil, imagen del producto
+// y diálogo de confirmación.
+import { $ } from '../comun/utilidades.js';
 
 // ---------- Menú lateral en móvil ----------
-function iniciarMenuMovil() {
+export function iniciarMenuMovil() {
   const sidebar = $('sidebar');
   const boton = $('menuBtn');
   if (!sidebar || !boton) return; // no está en esta página
@@ -54,7 +55,7 @@ function reducirImagen(enlace) {
 }
 
 // Muestra la imagen en la caja de vista previa (si no carga, queda el ícono).
-function pintarVistaPrevia(caja, enlace) {
+export function pintarVistaPrevia(caja, enlace) {
   caja.classList.remove('con-imagen');
   caja.style.backgroundImage = '';
   if (!enlace) return;
@@ -68,7 +69,7 @@ function pintarVistaPrevia(caja, enlace) {
 
 // Conecta el botón "Seleccionar imagen" con el input oculto y la vista previa.
 // onError se llama con "" para quitar el error, o con el mensaje de error.
-function conectarImagen({ botonId, entradaId, vistaPreviaId, onCambio, onError }) {
+export function conectarImagen({ botonId, entradaId, vistaPreviaId, onCambio, onError }) {
   const boton = $(botonId);
   const entrada = $(entradaId);
   const caja = $(vistaPreviaId);
@@ -93,7 +94,7 @@ function conectarImagen({ botonId, entradaId, vistaPreviaId, onCambio, onError }
 // ---------- Diálogo de confirmación ----------
 let confirmarAccion = null;
 
-function iniciarConfirmar() {
+export function iniciarConfirmar() {
   const modal = $('modalEliminar');
   if (!modal) return; // no está en esta página
   $('cancelarEliminar').addEventListener('click', () => modal.close());
@@ -105,32 +106,10 @@ function iniciarConfirmar() {
 }
 
 // Muestra el diálogo; accion se ejecuta sólo si la persona confirma.
-function mostrarConfirmar(accion) {
+export function mostrarConfirmar(accion) {
   const modal = $('modalEliminar');
   if (!modal) return;
   confirmarAccion = accion;
   modal.showModal();
   $('cancelarEliminar').focus();
-}
-
-// ---------- Validación del formulario ----------
-// datos: { codigo, nombre, categoria, precio, cantidadTexto, cantidadInvalida }
-// Devuelve { campo: mensaje } con los errores encontrados.
-function validarProducto(datos, idActual) {
-  const errores = {};
-
-  if (!datos.codigo) errores.codigo = 'El código es obligatorio.';
-  else if (existeCodigo(datos.codigo, idActual))
-    errores.codigo = 'Ya existe un producto con ese código.';
-
-  if (!datos.nombre) errores.nombre = 'El nombre es obligatorio.';
-  if (!datos.categoria) errores.categoria = 'Seleccione una categoría.';
-  if (!(datos.precio > 0)) errores.precio = 'El precio debe ser mayor que 0.';
-
-  if (datos.cantidadTexto === '')
-    errores.cantidad = datos.cantidadInvalida ? 'La cantidad debe ser un número entero.' : 'La cantidad es obligatoria.';
-  else if (Number(datos.cantidadTexto) < 0) errores.cantidad = 'La cantidad no puede ser negativa.';
-  else if (!Number.isInteger(Number(datos.cantidadTexto))) errores.cantidad = 'La cantidad debe ser un número entero.';
-
-  return errores;
 }

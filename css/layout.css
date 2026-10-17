@@ -20,10 +20,8 @@
   font-weight: 500; color: var(--nav-texto);
   transition: background .15s;
 }
-.nav-item .icono { color: var(--nav-icono); }
 .nav-item:hover { background: var(--sidebar-card); }
 .nav-item.activo { background: var(--verde); color: #fff; font-weight: 400; }
-.nav-item.activo .icono { color: #fff; }
 
 .ayuda { margin-top: auto; padding: 14px; border-radius: 12px; background: var(--sidebar-card); display: flex; flex-direction: column; gap: 8px; }
 .ayuda strong { font-size: 12px; line-height: 15px; color: #fff; }
@@ -43,7 +41,6 @@
 .perfil-info { display: flex; flex-direction: column; gap: 2px; }
 .perfil-nombre { line-height: 17px; }
 .perfil-rol { font-size: 12px; line-height: 15px; color: var(--texto-suave); }
-.perfil .icono { width: 15px; height: 15px; color: #93A09A; }
 
 .contenido {
   flex: 1; padding: 28px;
@@ -69,7 +66,7 @@
   .sidebar.abierto { transform: none; }
   .menu-btn { display: block; }
   .topbar, .contenido { padding-left: 16px; padding-right: 16px; }
-  .perfil-info, .perfil > .icono { display: none; }
+  .perfil-info { display: none; }
   .encabezado h1 { font-size: 26px; line-height: 32px; }
 }
 @media (max-width: 520px) {

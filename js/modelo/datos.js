@@ -1,12 +1,12 @@
 // Configuración y datos iniciales (sólo constantes).
-// Carpeta img/ calculada desde la ubicación de este archivo (js/datos.js),
-// así funciona sin importar si la página está en la raíz o en html/.
-const RUTA_IMG = new URL('../img/', document.currentScript.src).href;
+// Carpeta img/ calculada desde la ubicación de este archivo (js/modelo/datos.js),
+// así funciona sin importar desde qué página se cargue.
+export const RUTA_IMG = new URL('../../img/', import.meta.url).href;
 
-const UMBRAL_STOCK_BAJO = 10; // stock igual o menor a este número = "Stock bajo"
-const CATEGORIAS = ['Granos', 'Lácteos', 'Despensa', 'Bebidas'];
+export const UMBRAL_STOCK_BAJO = 10; // stock igual o menor a este número = "Stock bajo"
+export const CATEGORIAS = ['Granos', 'Lácteos', 'Despensa', 'Bebidas'];
 
-const PRODUCTOS_INICIALES = [
+export const PRODUCTOS_INICIALES = [
   { id: 1, codigo: 'PROD-001', nombre: 'Arroz Diana',     categoria: 'Granos',   precio: 4500,  stock: 25, imagen: RUTA_IMG + 'arroz.jpg', descripcion: 'Arroz blanco de 1 kg' },
   { id: 2, codigo: 'PROD-002', nombre: 'Aceite Premier',  categoria: 'Despensa', precio: 12900, stock: 8,  imagen: RUTA_IMG + 'aceite.jpg' },
   { id: 3, codigo: 'PROD-003', nombre: 'Leche Entera',    categoria: 'Lácteos',  precio: 3800,  stock: 42, imagen: RUTA_IMG + 'leche.jpg' },

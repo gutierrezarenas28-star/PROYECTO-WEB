@@ -81,9 +81,8 @@
             </div>
             <div class="campo" data-campo="categoria">
               <label for="categoria">Categoría *</label>
-              <div class="selector">
-                <select id="categoria" name="categoria" required></select>
-                </div>
+              <input id="categoria" name="categoria" type="text" list="listaCategorias" placeholder="Selecciona o escribe una categoría" autocomplete="off">
+              <datalist id="listaCategorias"></datalist>
               <p class="campo-error" hidden>⚠️ <span></span></p>
             </div>
             <div class="campo" data-campo="precio">
@@ -113,10 +112,6 @@
     </div>
   </div>
 
-  <script src="js/utilidades.js"></script>
-  <script src="js/datos.js"></script>
-  <script src="js/repositorio.js"></script>
-  <script src="js/componentes.js"></script>
-  <script src="js/formulario.js"></script>
+  <script type="module" src="js/controlador/formulario.js"></script>
 </body>
 </html>

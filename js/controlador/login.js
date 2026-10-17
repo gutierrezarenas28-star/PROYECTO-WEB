@@ -1,8 +1,11 @@
-// Pantalla de inicio de sesión: por ahora solo diseño (aún no está conectada a la app).
-const form = document.getElementById('formLogin');
+// Controlador del inicio de sesión:
+// por ahora solo diseño (aún no está conectado a la app).
+import { $ } from '../comun/utilidades.js';
+
+const form = $('formLogin');
 
 // Mostrar / ocultar contraseña (solo interfaz)
-document.getElementById('verClave').addEventListener('click', e => {
+$('verClave').addEventListener('click', e => {
   const boton = e.currentTarget;
   const visible = form.elements.clave.type === 'password';
   form.elements.clave.type = visible ? 'text' : 'password';
@@ -15,5 +18,3 @@ document.getElementById('verClave').addEventListener('click', e => {
 // TODO (cuando se conecte): aquí va la validación y el inicio de sesión real.
 // Por ahora se evita que el formulario recargue la página.
 form.addEventListener('submit', e => e.preventDefault());
-
-lucide.createIcons();
