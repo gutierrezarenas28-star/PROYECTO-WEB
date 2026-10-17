@@ -1,0 +1,60 @@
+/* Pantalla de inicio de sesión (medidas tomadas del diseño de Figma) */
+.pagina-login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px;
+  background:
+    url("../img/fondo-lineas.svg") no-repeat top left / 100% auto,
+    linear-gradient(90deg, #F6FBF8 0%, #ECF6F0 100%);
+}
+/* Centrado vertical "con ancla arriba": si aparecen errores, la tarjeta crece hacia abajo y no salta */
+.login { width: 100%; max-width: 464px; display: flex; flex-direction: column; align-items: center; gap: 24px; margin-top: max(0px, calc(50vh - 290px)); }
+
+.login-tarjeta { width: 100%; padding: 35px; /* 35 + 1 de borde = 36 como en Figma */ border-radius: 16px; box-shadow: 0 12px 36px rgba(24, 58, 47, .05); }
+.login-encabezado { display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
+.login-encabezado h1 { font-size: 28px; line-height: 34px; font-weight: 700; }
+.login-encabezado p { color: var(--texto-suave); }
+
+.login-form { display: flex; flex-direction: column; }
+.login-campo { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.login-campo label { font-weight: 500; }
+
+.login-entrada { display: flex; align-items: center; gap: 11px; height: 50px; padding: 0 14px; background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; color: #93A09A; }
+.login-entrada:focus-within { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(22, 122, 91, .12); }
+.login-entrada > .icono { width: 16px; height: 16px; }
+.login-entrada input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: none; font: inherit; color: var(--texto); }
+.login-entrada input::placeholder { color: #93A09A; }
+.login-campo.con-error .login-entrada { border-color: #C83E4D; }
+.login-campo.con-error .login-entrada:focus-within { box-shadow: 0 0 0 3px rgba(200, 62, 77, .12); }
+
+.ver-clave { display: grid; place-items: center; padding: 4px; margin-right: -4px; border: 0; background: none; color: var(--texto-suave); border-radius: 6px; }
+.ver-clave:hover { color: var(--texto); }
+.ver-clave span[hidden] { display: none; }
+
+.login-opciones { min-height: 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 28px; font-size: 13px; line-height: 16px; }
+.recordar { display: inline-flex; align-items: center; gap: 8px; color: var(--texto-suave); cursor: pointer; }
+.recordar input { appearance: none; width: 18px; height: 18px; margin: 0; flex: none; border: 1px solid var(--borde); border-radius: 4px; background: var(--blanco); display: grid; place-items: center; cursor: pointer; }
+.recordar input:checked { background: var(--verde); border-color: var(--verde); }
+.recordar input:checked::after { content: ""; width: 9px; height: 5px; margin-top: -2px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg); }
+
+.enlace { font-weight: 600; color: var(--verde); }
+.enlace:hover { text-decoration: underline; }
+
+.login-form .error-general { margin: -8px 0 16px; font-size: 13px; line-height: 16px; }
+
+.login-envio { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.btn-login { width: 100%; height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 8px; background: var(--verde); color: #fff; font-size: 15px; font-weight: 600; transition: background .15s; }
+.btn-login:hover { background: var(--verde-oscuro); }
+.btn-login .icono-sm { width: 16px; height: 16px; stroke-width: 2.2; }
+.login-seguro { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; line-height: 15px; color: var(--texto-suave); }
+.login-seguro .icono-sm { width: 14px; height: 14px; }
+
+.login-ayuda { font-size: 13px; line-height: 16px; color: var(--texto-suave); text-align: center; }
+
+@media (max-width: 480px) {
+  .login-tarjeta { padding: 23px 19px; }
+  .login-encabezado h1 { font-size: 24px; line-height: 30px; }
+  .login-opciones { flex-wrap: wrap; }
+}
