@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión | StoreManager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="pagina-login">
+  <main class="login">
+    <section class="tarjeta login-tarjeta" aria-labelledby="tituloLogin">
+      <header class="login-encabezado">
+        <h1 id="tituloLogin">¡Bienvenido de nuevo!</h1>
+        <p>Inicia sesión para continuar con la gestión de tu tienda.</p>
+      </header>
+
+      <form class="login-form" id="formLogin" novalidate>
+        <div class="login-campo" data-campo="correo">
+          <label for="correo">Correo electrónico</label>
+          <div class="login-entrada">
+            <i class="icono" data-lucide="mail"></i>
+            <input id="correo" name="correo" type="email" placeholder="correo@tutienda.com" autocomplete="username" aria-describedby="error-correo">
+          </div>
+          <p class="campo-error" id="error-correo" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+        </div>
+
+        <div class="login-campo" data-campo="clave">
+          <label for="clave">Contraseña</label>
+          <div class="login-entrada">
+            <i class="icono" data-lucide="lock"></i>
+            <input id="clave" name="clave" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" aria-describedby="error-clave">
+            <button class="ver-clave" id="verClave" type="button" aria-label="Mostrar contraseña" aria-pressed="false">
+              <span class="ojo-abierto"><i class="icono-sm" data-lucide="eye"></i></span>
+              <span class="ojo-cerrado" hidden><i class="icono-sm" data-lucide="eye-off"></i></span>
+            </button>
+          </div>
+          <p class="campo-error" id="error-clave" hidden><i class="icono-sm" data-lucide="circle-alert"></i><span></span></p>
+        </div>
+
+        <div class="login-opciones">
+          <label class="recordar">
+            <input type="checkbox" id="recordar" name="recordar">
+            <span>Recordar sesión</span>
+          </label>
+          <a class="enlace" href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <p class="error-general" id="errorLogin" role="alert" hidden></p>
+
+        <div class="login-envio">
+          <button class="btn-login" type="submit">Iniciar sesión<i class="icono-sm" data-lucide="arrow-right"></i></button>
+          <p class="login-seguro"><i class="icono-sm" data-lucide="shield-check"></i>Acceso seguro a tu tienda</p>
+        </div>
+      </form>
+    </section>
+
+    <p class="login-ayuda">¿Necesitas ayuda? <a class="enlace" href="#">Contacta con soporte</a></p>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
