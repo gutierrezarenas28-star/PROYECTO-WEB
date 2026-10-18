@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/",                 "destination": "/vista/",                 "type": 302 },
+    { "source": "/inventario",       "destination": "/vista/inventario",       "type": 302 },
+    { "source": "/login",            "destination": "/vista/login",            "type": 302 },
+    { "source": "/agregar-producto", "destination": "/vista/agregar-producto", "type": 302 },
+    { "source": "/editar-producto",  "destination": "/vista/editar-producto",  "type": 302 }
+  ]
+}
