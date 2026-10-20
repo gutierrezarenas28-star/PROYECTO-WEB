@@ -43,7 +43,9 @@ function render() {
   const inicio = (pagina - 1) * POR_PAGINA;
   const deLaPagina = lista.slice(inicio, inicio + POR_PAGINA);
 
-  vista.renderTabla(deLaPagina);
+  vista.renderTabla(deLaPagina, productos.length
+    ? 'No se encontraron productos.'
+    : 'Aún no hay productos. Usa "Agregar producto" para registrar el primero.');
   vista.renderResumen(inicio, deLaPagina.length, total);
   vista.renderPaginacion(pagina, totalPaginas);
 }
@@ -65,7 +67,7 @@ $('filas').addEventListener('click', evento => {
   if (!boton) return;
   const id = Number(boton.dataset.id);
   mostrarConfirmar(() => {
-    eliminarProducto(id);          // función del repositorio
+    eliminarProducto(id);
     productos = cargarProductos();
     renderCategorias();
     render();

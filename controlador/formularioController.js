@@ -5,7 +5,7 @@ import { CATEGORIAS } from '../modelo/datos.js';
 import { cargarProductos, buscarProducto, codigoSugerido, agregarProducto, actualizarProducto } from '../modelo/repositorio.js';
 import { validarProducto } from '../modelo/validaciones.js';
 import { iniciarMenuMovil, conectarImagen } from '../js/modulos/componentes.js';
-import { mostrarError, llenarCategorias, leerDatos, formatearPrecio, pintarProducto, ocultarErrorGeneral } from '../js/modulos/formulario-ui.js';
+import { mostrarError, llenarCategorias, leerDatos, formatearPrecio, pintarProducto, mostrarErrorGeneral, ocultarErrorGeneral } from '../js/modulos/formulario-ui.js';
 
 iniciarMenuMovil();
 
@@ -39,12 +39,13 @@ function guardar(datos) {
     nombre: datos.nombre, categoria: datos.categoria, precio: datos.precio,
     stock: Number(datos.cantidadTexto), descripcion: datos.descripcion, imagen: imagen,
   };
-  // En esta entrega los datos no se guardan: el cambio
-  // vive en la memoria de la página abierta.
-  if (esEditar) {
-    actualizarProducto(producto.id, campos);
-  } else {
-    agregarProducto(campos);
+  try {
+    if (esEditar) actualizarProducto(producto.id, campos);
+    else agregarProducto(campos);
+  } catch {
+    // localStorage lleno o bloqueado (suele pasar con imágenes muy pesadas)
+    mostrarErrorGeneral('No se pudo guardar. Prueba con una imagen más liviana o libera espacio del navegador.');
+    return;
   }
   location.href = 'inventario.html';
 }
@@ -75,13 +76,11 @@ function normalizarCategoria(nombre) {
 }
 
 if (esEditar) {
-  // Si la página se abre a mano (sin ?id=...), se carga el primer
-  // producto para que siempre haya algo que editar.
   const id = Number(new URLSearchParams(location.search).get('id'));
-  producto = buscarProducto(id) || cargarProductos()[0];
+  producto = buscarProducto(id);
 
   if (!producto) {
-    location.replace('inventario.html'); // todavía no hay productos
+    location.replace('inventario.html'); // el producto no existe
   } else {
     llenarCategorias(categoriasDisponibles(producto.categoria), producto.categoria);
     imagen = producto.imagen || '';

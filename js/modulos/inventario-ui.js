@@ -23,10 +23,10 @@ function filaHTML(producto) {
     </div>`;
 }
 
-export function renderTabla(productos) {
+export function renderTabla(productos, mensajeVacio) {
   $('filas').innerHTML = productos.length
     ? productos.map(filaHTML).join('')
-    : '<div class="tabla-vacia">No se encontraron productos.</div>';
+    : `<div class="tabla-vacia">${mensajeVacio}</div>`;
 }
 
 // ---------- Filtro de categorías ----------

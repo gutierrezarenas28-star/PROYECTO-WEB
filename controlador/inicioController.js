@@ -1,26 +1,25 @@
-// Controlador del inicio: prepara los datos y se los entrega a la vista.
-import { buscarProducto, productosConStockBajo } from '../modelo/repositorio.js';
+// Controlador del inicio: prepara los datos reales y se los entrega a la vista.
+import { productosRecientes, productosConStockBajo, resumenInventario } from '../modelo/repositorio.js';
+import { PRODUCTOS_RECIENTES } from '../modelo/datos.js';
+import { moneda } from '../js/comun/utilidades.js';
 import { iniciarMenuMovil } from '../js/modulos/componentes.js';
 import { renderEncabezado, renderIndicadores, renderRecientes, renderStockBajo } from '../js/modulos/inicio-ui.js';
 
 iniciarMenuMovil();
 
-const usuario = { nombre: 'Laura🥺​' };
+const usuario = { nombre: 'Laura' };
 
-// Indicadores decorativos del tablero (datos de ejemplo).
-const indicadores = [
-  { etiqueta: 'Total de productos',       valor: '126',        nota: '+8 este mes',        emoji: '📦' },
-  { etiqueta: 'Productos con poco stock', valor: '13',         nota: 'Requieren atención', emoji: '⚠️', alerta: true },
-  { etiqueta: 'Valor del inventario',     valor: '$8.450.000', nota: '+5,4% este mes',     emoji: '💳' },
-  { etiqueta: 'Ventas realizadas',        valor: '348',        nota: '+12,6% este mes',    emoji: '💵' },
-];
-
-// Productos "recientes" (por ahora, orden fijado a mano).
-const IDS_RECENTES = [1, 3, 2, 4];
-
-const recientes = IDS_RECENTES.map(buscarProducto).filter(Boolean);
+function construirIndicadores() {
+  const resumen = resumenInventario();
+  return [
+    { etiqueta: 'Total de productos',       valor: resumen.total,               nota: 'Registrados en el inventario', emoji: '📦' },
+    { etiqueta: 'Productos con poco stock', valor: resumen.stockBajo,           nota: 'Requieren atención',           emoji: '⚠️', alerta: resumen.stockBajo > 0 },
+    { etiqueta: 'Valor del inventario',     valor: moneda(resumen.valor),       nota: 'Precio por stock',             emoji: '💳' },
+    { etiqueta: 'Categorías',               valor: resumen.categorias,          nota: 'En uso',                       emoji: '🏷️' },
+  ];
+}
 
 renderEncabezado(usuario);
-renderIndicadores(indicadores);
-renderRecientes(recientes);
+renderIndicadores(construirIndicadores());
+renderRecientes(productosRecientes(PRODUCTOS_RECIENTES));
 renderStockBajo(productosConStockBajo());

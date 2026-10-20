@@ -54,6 +54,12 @@ export function pintarProducto(producto) {
   pintarVistaPrevia($('vistaPrevia'), producto.imagen || '');
 }
 
+export function mostrarErrorGeneral(mensaje) {
+  const caja = $('errorGeneral');
+  caja.textContent = mensaje;
+  caja.hidden = false;
+}
+
 export function ocultarErrorGeneral() {
   $('errorGeneral').hidden = true;
 }

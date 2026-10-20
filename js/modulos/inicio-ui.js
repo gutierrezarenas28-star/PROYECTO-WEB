@@ -45,10 +45,17 @@ function filaProducto(producto) {
     </div>`;
 }
 
+// Pinta la lista de productos de un panel, o un mensaje si está vacía.
+function renderLista(idContenedor, productos, mensajeVacio) {
+  $(idContenedor).innerHTML = productos.length
+    ? productos.map(filaProducto).join('')
+    : `<div class="tabla-vacia">${mensajeVacio}</div>`;
+}
+
 export function renderRecientes(productos) {
-  $('recientes').innerHTML = productos.map(filaProducto).join('');
+  renderLista('recientes', productos, 'Aún no has registrado productos.');
 }
 
 export function renderStockBajo(productos) {
-  $('stockBajo').innerHTML = productos.map(filaProducto).join('');
+  renderLista('stockBajo', productos, 'No hay productos con stock bajo.');
 }
