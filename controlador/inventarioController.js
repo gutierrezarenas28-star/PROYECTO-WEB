@@ -1,5 +1,3 @@
-// Controlador del inventario: escucha los eventos de la página y
-// coordina al modelo (datos) con la vista (pintado).
 import { $ } from '../js/comun/utilidades.js';
 import { cargarProductos, eliminarProducto } from '../modelo/repositorio.js';
 import { iniciarMenuMovil, iniciarConfirmar, mostrarConfirmar } from '../js/modulos/componentes.js';
@@ -13,7 +11,6 @@ let productos = cargarProductos();
 let pagina = 1;
 const filtro = { texto: '', categoria: '' };
 
-// ---------- Datos de la página ----------
 function filtrados() {
   const texto = filtro.texto.trim().toLowerCase();
   return productos.filter(producto =>
@@ -27,7 +24,6 @@ function categoriasDisponibles() {
     .sort((a, b) => a.localeCompare(b, 'es'));
 }
 
-// ---------- Pintado ----------
 function renderCategorias() {
   const categorias = categoriasDisponibles();
   if (!categorias.includes(filtro.categoria)) filtro.categoria = '';
@@ -50,7 +46,6 @@ function render() {
   vista.renderPaginacion(pagina, totalPaginas);
 }
 
-// ---------- Eventos ----------
 $('buscador').addEventListener('input', evento => { filtro.texto = evento.target.value; pagina = 1; render(); });
 $('categoria').addEventListener('change', evento => { filtro.categoria = evento.target.value; pagina = 1; render(); });
 
@@ -61,7 +56,6 @@ $('paginas').addEventListener('click', evento => {
   render();
 });
 
-// Eliminar con confirmación
 $('filas').addEventListener('click', evento => {
   const boton = evento.target.closest('.eliminar');
   if (!boton) return;

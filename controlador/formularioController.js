@@ -66,7 +66,7 @@ function categoriasDisponibles(actual) {
   return [...new Set([...CATEGORIAS, ...cargarProductos().map(producto => producto.categoria), actual].filter(Boolean))];
 }
 
-/
+
 function normalizarCategoria(nombre) {
   const existente = categoriasDisponibles().find(categoria => categoria.toLowerCase() === nombre.toLowerCase());
   return existente || primeraMayuscula(nombre);
