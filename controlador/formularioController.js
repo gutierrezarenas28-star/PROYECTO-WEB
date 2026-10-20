@@ -76,7 +76,7 @@ function normalizarCategoria(nombre) {
 }
 
 if (esEditar) {
-  const id = Number(new URLSearchParams(location.search).get('id'));
+  const id = Number(new URLSearchParams(location.search).get('producto'));
   producto = buscarProducto(id);
 
   if (!producto) {

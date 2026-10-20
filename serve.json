@@ -1,9 +1,65 @@
 {
+  "cleanUrls": false,
   "redirects": [
-    { "source": "/",                 "destination": "/vista/",                 "type": 302 },
-    { "source": "/inventario",       "destination": "/vista/inventario",       "type": 302 },
-    { "source": "/login",            "destination": "/vista/login",            "type": 302 },
-    { "source": "/agregar-producto", "destination": "/vista/agregar-producto", "type": 302 },
-    { "source": "/editar-producto",  "destination": "/vista/editar-producto",  "type": 302 }
+    {
+      "source": "/",
+      "destination": "/vista/index.html",
+      "type": 302
+    },
+    {
+      "source": "/vista",
+      "destination": "/vista/index.html",
+      "type": 302
+    },
+    {
+      "source": "/vista/",
+      "destination": "/vista/index.html",
+      "type": 302
+    },
+    {
+      "source": "/inventario",
+      "destination": "/vista/inventario.html",
+      "type": 302
+    },
+    {
+      "source": "/login",
+      "destination": "/vista/login.html",
+      "type": 302
+    },
+    {
+      "source": "/agregar-producto",
+      "destination": "/vista/agregar-producto.html",
+      "type": 302
+    },
+    {
+      "source": "/editar-producto",
+      "destination": "/vista/editar-producto.html",
+      "type": 302
+    },
+    {
+      "source": "/vista/index",
+      "destination": "/vista/index.html",
+      "type": 302
+    },
+    {
+      "source": "/vista/inventario",
+      "destination": "/vista/inventario.html",
+      "type": 302
+    },
+    {
+      "source": "/vista/login",
+      "destination": "/vista/login.html",
+      "type": 302
+    },
+    {
+      "source": "/vista/agregar-producto",
+      "destination": "/vista/agregar-producto.html",
+      "type": 302
+    },
+    {
+      "source": "/vista/editar-producto",
+      "destination": "/vista/editar-producto.html",
+      "type": 302
+    }
   ]
 }

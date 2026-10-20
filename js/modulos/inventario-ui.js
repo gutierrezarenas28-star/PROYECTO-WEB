@@ -17,7 +17,7 @@ function filaHTML(producto) {
       <span>${producto.stock}</span>
       <span><span class="etiqueta-estado${bajo ? ' bajo' : ''}">${bajo ? 'Stock bajo' : 'Disponible'}</span></span>
       <div class="acciones">
-        <a class="accion editar" href="editar-producto.html?id=${producto.id}" aria-label="Editar ${escapar(producto.nombre)}">✏️</a>
+        <a class="accion editar" href="editar-producto.html?producto=${producto.id}" aria-label="Editar ${escapar(producto.nombre)}">✏️</a>
         <button class="accion eliminar" type="button" data-id="${producto.id}" aria-label="Eliminar ${escapar(producto.nombre)}">🗑️</button>
       </div>
     </div>`;
