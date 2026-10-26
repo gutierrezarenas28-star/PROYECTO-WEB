@@ -1,6 +1,6 @@
 // Controlador del inicio de sesión:
 // por ahora solo diseño (aún no está conectado a la app).
-import { $ } from '../js/comun/utilidades.js';
+import { $ } from '../vista/comun/utilidades.js';
 
 const form = $('formLogin');
 

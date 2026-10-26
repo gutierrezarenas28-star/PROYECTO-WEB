@@ -1,9 +1,9 @@
 // Controlador del inicio: prepara los datos reales y se los entrega a la vista.
 import { productosRecientes, productosConStockBajo, resumenInventario } from '../modelo/repositorio.js';
 import { PRODUCTOS_RECIENTES } from '../modelo/datos.js';
-import { moneda } from '../js/comun/utilidades.js';
-import { iniciarMenuMovil } from '../js/modulos/componentes.js';
-import { renderEncabezado, renderIndicadores, renderRecientes, renderStockBajo } from '../js/modulos/inicio-ui.js';
+import { moneda } from '../vista/comun/utilidades.js';
+import { iniciarMenuMovil } from '../vista/componentes.js';
+import { renderEncabezado, renderIndicadores, renderRecientes, renderStockBajo } from '../vista/inicio-ui.js';
 
 iniciarMenuMovil();
 
